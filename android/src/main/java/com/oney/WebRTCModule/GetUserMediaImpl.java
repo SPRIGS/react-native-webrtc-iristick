@@ -195,11 +195,13 @@ class GetUserMediaImpl {
 
             Log.d(TAG, "getUserMedia(video): " + videoConstraintsMap);
 
-            CameraCaptureController cameraCaptureController = new CameraCaptureController(
-                cameraEnumerator,
-                videoConstraintsMap);
-
-            videoTrack = createVideoTrack(cameraCaptureController);
+            IristickCaptureController iristickCaptureController = new IristickCaptureController(
+                    videoConstraintsMap.getInt("width"),
+                    videoConstraintsMap.getInt("height"),
+                    30
+            );
+            
+            videoTrack = createVideoTrack(iristickCaptureController);
         }
 
         if (audioTrack == null && videoTrack == null) {
